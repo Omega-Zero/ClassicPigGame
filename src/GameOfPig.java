@@ -6,7 +6,7 @@ public class GameOfPig {
 
 	public static void main(String[] args) {
 		
-		 JFrame pigFrame = new JFrame("Pig Game");;
+		 JFrame pigFrame = new JFrame("Pig Game");
 		 pigFrame.setPreferredSize(new Dimension(400, 500));
 
 		 pigFrame.pack();
