@@ -19,19 +19,22 @@ public class GameOfPig extends JFrame{
 
 		super("Pig Game");
 
+		JButton computerPlayButton = new JButton("Play Computer");
+		add(computerPlayButton);
+		computerPlayButton.setBounds(525, 730, 150, 20);
+		
 		JButton rollDiceButton = new JButton("Roll Dice"); 
-		JLabel mainFrameLabel = new JLabel();
-		
-		
 		add(rollDiceButton);
-		rollDiceButton.setBounds(100, 100, 100, 80);
-		add(mainFrameLabel, BorderLayout.CENTER);
-		super.setSize(700, 800); 
-
-		setVisible(true);
-				
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		rollDiceButton.setBounds(250, 650, 200, 80);
 		
+		JLabel mainFrameLabel = new JLabel();
+		add(mainFrameLabel, BorderLayout.CENTER);
+	
+		super.setSize(700, 800); 
+		setVisible(true);
+			
+		//fully close when exit
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter() {
 
 			public void windowClosing(WindowEvent e) {
