@@ -14,6 +14,11 @@ import java.util.Random;
 
 public class GameOfPig extends JFrame{
 
+	int currentTurnValue = 0;
+	boolean player1Turn = true;
+	boolean player2Turn = false;
+	boolean computerPlayer = false;
+	
 	public static void main(String[] args) {
 		
 		new GameOfPig();
@@ -23,9 +28,10 @@ public class GameOfPig extends JFrame{
 	
 	//Main window call that generates GUI
 	public GameOfPig() {
-
+		
 		super("Pig Game");
-
+		
+		
 		JButton computerPlayButton = new JButton("Play Computer");
 		add(computerPlayButton);
 		computerPlayButton.setBounds(275, 735, 150, 20);
@@ -33,15 +39,11 @@ public class GameOfPig extends JFrame{
 		JButton rollDiceButton = new JButton("Roll Dice"); 
 		add(rollDiceButton);
 		rollDiceButton.setBounds(250, 500, 200, 80);
-//		rollDiceButton.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//            	diceValueLabel.setText("\rollDice");
-//            	}
-//		});
             
-            
+		JButton passPigsButton = new JButton("Pass Pigs"); 
+		add(passPigsButton);
+		passPigsButton.setBounds(250, 600, 200, 80);
+		
 		JLabel mainFrameLabel = new JLabel();
 		add(mainFrameLabel, BorderLayout.CENTER);
 	
@@ -56,6 +58,18 @@ public class GameOfPig extends JFrame{
 	    diceValueLabel.setFont(new Font("Serif", Font.PLAIN, 70));
 		diceValueLabel.setBounds(335, 50, 200, 700);
 		diceValueLabel.setText("0");
+
+		JLabel currentTurnScoreLabel = new JLabel();	
+	    mainFrameLabel.add(currentTurnScoreLabel);
+	    currentTurnScoreLabel.setFont(new Font("Serif", Font.PLAIN, 70));
+	    currentTurnScoreLabel.setBounds(335, -100, 200, 700);
+		currentTurnScoreLabel.setText("0");
+		
+		JLabel turnScoreTitleLabel = new JLabel();	
+	    mainFrameLabel.add(turnScoreTitleLabel);
+	    turnScoreTitleLabel.setFont(new Font("Serif", Font.PLAIN, 40));
+	    turnScoreTitleLabel.setBounds(270, -150, 200, 700);
+	    turnScoreTitleLabel.setText("Turn Score");
 		
 		JLabel player1ScoreTitleLabel = new JLabel();
 		mainFrameLabel.add(player1ScoreTitleLabel);
@@ -81,6 +95,50 @@ public class GameOfPig extends JFrame{
 		player2ScoreLabel.setBounds(550, 100, 200, 900);
 		player2ScoreLabel.setText("0");
 		
+		
+		
+		rollDiceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	int diceValue = rollDice();
+            	
+            	if (diceValue != 1) {
+            		
+            	diceValueLabel.setText(Integer.toString(diceValue));
+            	currentTurnValue = currentTurnValue + diceValue;
+            	currentTurnScoreLabel.setText(Integer.toString(currentTurnValue));
+            	}else {
+            		
+            	}
+            	
+            }
+		});
+		
+		passPigsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+           
+            	if(player1Turn) {
+            		player1ScoreLabel.setText(Integer.toString(Integer.parseInt(player1ScoreLabel.getText()) + currentTurnValue));
+            		currentTurnValue = 0;
+            		currentTurnScoreLabel.setText("0");
+            		player1Turn = false;
+            		player2Turn = true;
+
+            	}else {
+            		player2ScoreLabel.setText(Integer.toString(Integer.parseInt(player2ScoreLabel.getText()) + currentTurnValue));
+            		currentTurnValue = 0;
+            		currentTurnScoreLabel.setText("0");
+            		player1Turn = true;
+            		player2Turn = false;
+
+            	}
+            	
+            }
+		});
+		
+		
+		
 		super.setSize(700, 800); 
 		setVisible(true);
 			
@@ -94,15 +152,19 @@ public class GameOfPig extends JFrame{
 		});
 
 		
-	}
+	}//END GameOfPig()
 
-	public int rollDice() {
-		
-		Random rand = new Random();
-		
-		int randomInt = rand.nextInt(5);
-		
-		return randomInt;
 	
-	}
-}
+	public int rollDice() {
+		Random rand = new Random();
+		int randomInt = rand.nextInt(5) + 1;
+		return randomInt;	
+		
+	}//END rollDice()
+	
+	
+	
+	
+	
+	
+}//END GameOfPig class
