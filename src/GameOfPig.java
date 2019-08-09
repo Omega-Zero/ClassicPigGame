@@ -1,11 +1,15 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,8 +82,10 @@ public class GameOfPig extends JFrame {
 		JLabel player1ScoreLabel = new JLabel();
 		mainFrameLabel.add(player1ScoreLabel);
 		player1ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 100));
-		player1ScoreLabel.setBounds(75, 100, 200, 900);
+	    player1ScoreLabel.setHorizontalAlignment(JLabel.CENTER);
+		player1ScoreLabel.setBounds(75, 100, 100, 100);
 		player1ScoreLabel.setText("0");
+		player1ScoreLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		JLabel player2ScoreTitleLabel = new JLabel();
 		mainFrameLabel.add(player2ScoreTitleLabel);
@@ -90,15 +96,23 @@ public class GameOfPig extends JFrame {
 		JLabel player2ScoreLabel = new JLabel();
 		mainFrameLabel.add(player2ScoreLabel);
 		player2ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 100));
-		player2ScoreLabel.setBounds(550, 100, 200, 900);
+		player2ScoreLabel.setBounds(550, 100, 100, 100);
+	    player2ScoreLabel.setHorizontalAlignment(JLabel.CENTER);
 		player2ScoreLabel.setText("0");
+		player2ScoreLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 
+		player1ScoreLabel.setBackground(Color.pink);
+		player2ScoreLabel.setBackground(Color.gray);
+		player2ScoreLabel.setOpaque(true);
+		player1ScoreLabel.setOpaque(true);
+
+		// ROLL DICE BUTTON
 		rollDiceButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				int diceValue = rollDice();
-				
+
 				// Pig out if check
 				diceValueLabel.setText(Integer.toString(diceValue));
 				if (diceValue != 1) {
@@ -108,47 +122,71 @@ public class GameOfPig extends JFrame {
 				} else {
 
 					if (player1Turn) {
-						player1Turn = false;
-						player2Turn = true;
 
+						JOptionPane.showMessageDialog(mainFrameLabel, "OINK OINK! PLAYER 1 PIGGED OUT!");
+						player2ScoreLabel.setBackground(Color.pink);
+						player1ScoreLabel.setBackground(Color.gray);
 					} else {
-						player1Turn = true;
-						player2Turn = false;
-					}
-					currentTurnValue = 0;
-					currentTurnScoreLabel.setText("0");
 
+						JOptionPane.showMessageDialog(mainFrameLabel, "OINK OINK! PLAYER 2 PIGGED OUT!");
+						player1ScoreLabel.setBackground(Color.pink);
+						player2ScoreLabel.setBackground(Color.gray);
+					}
+
+					swapTurn();
+					currentTurnScoreLabel.setText("0");
 				}
 
 			}
 		});
+		// END ROLL BUTTON
 
+		// PASS PIGS BUTTON
 		passPigsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				if (player1Turn) {
+
 					player1ScoreLabel.setText(
 							Integer.toString(Integer.parseInt(player1ScoreLabel.getText()) + currentTurnValue));
 					currentTurnValue = 0;
 					currentTurnScoreLabel.setText("0");
-					player1Turn = false;
-					player2Turn = true;
+					// Win check
+					if (Integer.parseInt(player1ScoreLabel.getText()) >= 100) {
+						JOptionPane.showMessageDialog(mainFrameLabel, "Congratulaions! Player 1 Wins!!!");
+
+					}
+					player2ScoreLabel.setBackground(Color.pink);
+					player1ScoreLabel.setBackground(Color.gray);
+					player2ScoreLabel.setOpaque(true);
+					player1ScoreLabel.setOpaque(true);
+					swapTurn();
 
 				} else {
+
 					player2ScoreLabel.setText(
 							Integer.toString(Integer.parseInt(player2ScoreLabel.getText()) + currentTurnValue));
 					currentTurnValue = 0;
 					currentTurnScoreLabel.setText("0");
-					player1Turn = true;
-					player2Turn = false;
+
+					// Win Check
+					if (Integer.parseInt(player2ScoreLabel.getText()) >= 100) {
+						JOptionPane.showMessageDialog(mainFrameLabel, "Congratulaions! Player 2 Wins!!!");
+
+					}
+
+					player1ScoreLabel.setBackground(Color.pink);
+					player2ScoreLabel.setBackground(Color.gray);
+					swapTurn();
 
 				}
 
 			}
-		});
+		});// END PASS BUTTON
 
 		super.setSize(700, 800);
+
 		setVisible(true);
 
 		// fully close when exit
@@ -161,6 +199,19 @@ public class GameOfPig extends JFrame {
 		});
 
 	}// END GameOfPig()
+
+	public void swapTurn() {
+		if (player1Turn) {
+			player1Turn = false;
+			player2Turn = true;
+
+		} else {
+			player1Turn = true;
+			player2Turn = false;
+		}
+		currentTurnValue = 0;
+
+	}
 
 	public int rollDice() {
 		Random rand = new Random();
