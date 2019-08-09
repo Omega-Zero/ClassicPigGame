@@ -1,3 +1,5 @@
+//Jeffrey Marple's implementation of the classic game, Pass the Pigs
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -52,9 +54,12 @@ public class GameOfPig extends JFrame {
 		JLabel diceTitleLabel = new JLabel();
 		mainFrameLabel.add(diceTitleLabel);
 		diceTitleLabel.setFont(new Font("Serif", Font.PLAIN, 35));
-		diceTitleLabel.setBounds(275, 0, 200, 700);
+		diceTitleLabel.setBounds(275, 0, 175, 50);
 		diceTitleLabel.setText("Dice Value");
-
+		diceTitleLabel.setHorizontalAlignment(JLabel.CENTER);
+		diceTitleLabel.setBackground(Color.red);
+		diceTitleLabel.setOpaque(true);
+		
 		JLabel diceValueLabel = new JLabel();
 		mainFrameLabel.add(diceValueLabel);
 		diceValueLabel.setFont(new Font("Serif", Font.PLAIN, 70));
@@ -76,36 +81,47 @@ public class GameOfPig extends JFrame {
 		JLabel player1ScoreTitleLabel = new JLabel();
 		mainFrameLabel.add(player1ScoreTitleLabel);
 		player1ScoreTitleLabel.setFont(new Font("Serif", Font.PLAIN, 35));
-		player1ScoreTitleLabel.setBounds(30, 100, 200, 700);
-		player1ScoreTitleLabel.setText("Player One");
+		player1ScoreTitleLabel.setBounds(35, 30, 175, 50);
+		player1ScoreTitleLabel.setHorizontalAlignment(JLabel.CENTER);
+		player1ScoreTitleLabel.setText("Player 1");
+		player1ScoreTitleLabel.setBackground(Color.pink);
+		player1ScoreTitleLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 
+		
 		JLabel player1ScoreLabel = new JLabel();
 		mainFrameLabel.add(player1ScoreLabel);
 		player1ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 100));
 	    player1ScoreLabel.setHorizontalAlignment(JLabel.CENTER);
-		player1ScoreLabel.setBounds(75, 100, 100, 100);
+		player1ScoreLabel.setBounds(75, 79, 100, 100);
 		player1ScoreLabel.setText("0");
 		player1ScoreLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		JLabel player2ScoreTitleLabel = new JLabel();
 		mainFrameLabel.add(player2ScoreTitleLabel);
 		player2ScoreTitleLabel.setFont(new Font("Serif", Font.PLAIN, 35));
-		player2ScoreTitleLabel.setBounds(500, 100, 800, 700);
-		player2ScoreTitleLabel.setText("Player Two");
-
+		player2ScoreTitleLabel.setBounds(475, 30, 175, 50);
+		player2ScoreTitleLabel.setText("Player 2");
+		player2ScoreTitleLabel.setHorizontalAlignment(JLabel.CENTER);
+		player2ScoreTitleLabel.setBackground(Color.gray);
+		player2ScoreTitleLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+		
 		JLabel player2ScoreLabel = new JLabel();
 		mainFrameLabel.add(player2ScoreLabel);
 		player2ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 100));
-		player2ScoreLabel.setBounds(550, 100, 100, 100);
+		player2ScoreLabel.setBounds(515, 79, 100, 100);
 	    player2ScoreLabel.setHorizontalAlignment(JLabel.CENTER);
 		player2ScoreLabel.setText("0");
 		player2ScoreLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-
+		
 		player1ScoreLabel.setBackground(Color.pink);
 		player2ScoreLabel.setBackground(Color.gray);
 		player2ScoreLabel.setOpaque(true);
 		player1ScoreLabel.setOpaque(true);
 
+		player1ScoreTitleLabel.setOpaque(true);
+		player2ScoreTitleLabel.setOpaque(true);
+
+		
 		// ROLL DICE BUTTON
 		rollDiceButton.addActionListener(new ActionListener() {
 			@Override
@@ -125,13 +141,16 @@ public class GameOfPig extends JFrame {
 
 						JOptionPane.showMessageDialog(mainFrameLabel, "OINK OINK! PLAYER 1 PIGGED OUT!");
 						player2ScoreLabel.setBackground(Color.pink);
+						player2ScoreTitleLabel.setBackground(Color.pink);
 						player1ScoreLabel.setBackground(Color.gray);
+						player1ScoreTitleLabel.setBackground(Color.gray);
 					} else {
 
 						JOptionPane.showMessageDialog(mainFrameLabel, "OINK OINK! PLAYER 2 PIGGED OUT!");
-						player1ScoreLabel.setBackground(Color.pink);
 						player2ScoreLabel.setBackground(Color.gray);
-					}
+						player2ScoreTitleLabel.setBackground(Color.gray);
+						player1ScoreLabel.setBackground(Color.pink);
+						player1ScoreTitleLabel.setBackground(Color.pink);					}
 
 					swapTurn();
 					currentTurnScoreLabel.setText("0");
@@ -158,9 +177,13 @@ public class GameOfPig extends JFrame {
 
 					}
 					player2ScoreLabel.setBackground(Color.pink);
+					player2ScoreTitleLabel.setBackground(Color.pink);
 					player1ScoreLabel.setBackground(Color.gray);
+					player1ScoreTitleLabel.setBackground(Color.gray);
 					player2ScoreLabel.setOpaque(true);
 					player1ScoreLabel.setOpaque(true);
+					player2ScoreTitleLabel.setOpaque(true);
+					player1ScoreTitleLabel.setOpaque(true);
 					swapTurn();
 
 				} else {
@@ -176,8 +199,15 @@ public class GameOfPig extends JFrame {
 
 					}
 
-					player1ScoreLabel.setBackground(Color.pink);
 					player2ScoreLabel.setBackground(Color.gray);
+					player2ScoreTitleLabel.setBackground(Color.gray);
+					player1ScoreLabel.setBackground(Color.pink);
+					player1ScoreTitleLabel.setBackground(Color.pink);
+					player2ScoreLabel.setOpaque(true);
+					player1ScoreLabel.setOpaque(true);
+					player2ScoreTitleLabel.setOpaque(true);
+					player1ScoreTitleLabel.setOpaque(true);
+				
 					swapTurn();
 
 				}
