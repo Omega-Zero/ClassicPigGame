@@ -42,19 +42,29 @@ public class GameOfPig extends JFrame {
 
 		JButton rollDiceButton = new JButton("Roll Dice");
 		add(rollDiceButton);
-		rollDiceButton.setBounds(250, 500, 200, 80);
+		rollDiceButton.setBounds(100, 500, 200, 80);
 
 		JButton passPigsButton = new JButton("Pass Pigs");
 		add(passPigsButton);
-		passPigsButton.setBounds(250, 600, 200, 80);
+		passPigsButton.setBounds(500, 500, 200, 80);
 
+		
 		JLabel mainFrameLabel = new JLabel();
 		add(mainFrameLabel, BorderLayout.CENTER);
 
+		JLabel titleLabel = new JLabel();
+		mainFrameLabel.add(titleLabel);
+		titleLabel.setText("Pass the Pigs");
+		titleLabel.setBackground(Color.red);
+		titleLabel.setOpaque(true);
+		titleLabel.setForeground(Color.pink);
+		titleLabel.setBounds(215, 90, 275, 60);
+		titleLabel.setFont(new Font("Serif", Font.BOLD, 50));
+		
 		JLabel diceTitleLabel = new JLabel();
 		mainFrameLabel.add(diceTitleLabel);
 		diceTitleLabel.setFont(new Font("Serif", Font.PLAIN, 35));
-		diceTitleLabel.setBounds(275, 0, 175, 50);
+		diceTitleLabel.setBounds(275, 300, 175, 50);
 		diceTitleLabel.setText("Dice Value");
 		diceTitleLabel.setHorizontalAlignment(JLabel.CENTER);
 		diceTitleLabel.setBackground(Color.red);
@@ -63,14 +73,20 @@ public class GameOfPig extends JFrame {
 		JLabel diceValueLabel = new JLabel();
 		mainFrameLabel.add(diceValueLabel);
 		diceValueLabel.setFont(new Font("Serif", Font.PLAIN, 70));
-		diceValueLabel.setBounds(335, 50, 200, 700);
+		diceValueLabel.setHorizontalAlignment(JLabel.CENTER);
+		diceValueLabel.setVerticalAlignment(JLabel.CENTER);
+		diceValueLabel.setBounds(325, 350, 60, 70);
 		diceValueLabel.setText("0");
+		diceValueLabel.setBackground(Color.blue);
+		diceValueLabel.setOpaque(true);
 
 		JLabel currentTurnScoreLabel = new JLabel();
 		mainFrameLabel.add(currentTurnScoreLabel);
 		currentTurnScoreLabel.setFont(new Font("Serif", Font.PLAIN, 70));
-		currentTurnScoreLabel.setBounds(335, -100, 200, 700);
+		currentTurnScoreLabel.setBounds(335, 450, 60, 70);
 		currentTurnScoreLabel.setText("0");
+		currentTurnScoreLabel.setBackground(Color.red);
+		currentTurnScoreLabel.setOpaque(true);
 
 		JLabel turnScoreTitleLabel = new JLabel();
 		mainFrameLabel.add(turnScoreTitleLabel);
@@ -99,7 +115,7 @@ public class GameOfPig extends JFrame {
 		JLabel player2ScoreTitleLabel = new JLabel();
 		mainFrameLabel.add(player2ScoreTitleLabel);
 		player2ScoreTitleLabel.setFont(new Font("Serif", Font.PLAIN, 35));
-		player2ScoreTitleLabel.setBounds(475, 30, 175, 50);
+		player2ScoreTitleLabel.setBounds(475, 30, 185, 50);
 		player2ScoreTitleLabel.setText("Player 2");
 		player2ScoreTitleLabel.setHorizontalAlignment(JLabel.CENTER);
 		player2ScoreTitleLabel.setBackground(Color.gray);
@@ -108,7 +124,7 @@ public class GameOfPig extends JFrame {
 		JLabel player2ScoreLabel = new JLabel();
 		mainFrameLabel.add(player2ScoreLabel);
 		player2ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 100));
-		player2ScoreLabel.setBounds(515, 79, 100, 100);
+		player2ScoreLabel.setBounds(515, 79, 110, 100);
 	    player2ScoreLabel.setHorizontalAlignment(JLabel.CENTER);
 		player2ScoreLabel.setText("0");
 		player2ScoreLabel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -120,6 +136,8 @@ public class GameOfPig extends JFrame {
 
 		player1ScoreTitleLabel.setOpaque(true);
 		player2ScoreTitleLabel.setOpaque(true);
+
+		setResizable(false);
 
 		
 		// ROLL DICE BUTTON
@@ -144,6 +162,7 @@ public class GameOfPig extends JFrame {
 						player2ScoreTitleLabel.setBackground(Color.pink);
 						player1ScoreLabel.setBackground(Color.gray);
 						player1ScoreTitleLabel.setBackground(Color.gray);
+						
 					} else {
 
 						JOptionPane.showMessageDialog(mainFrameLabel, "OINK OINK! PLAYER 2 PIGGED OUT!");
