@@ -38,15 +38,15 @@ public class GameOfPig extends JFrame {
 
 		JButton computerPlayButton = new JButton("Play Computer");
 		add(computerPlayButton);
-		computerPlayButton.setBounds(275, 735, 150, 20);
+		computerPlayButton.setBounds(275, 590, 150, 20);
 
 		JButton rollDiceButton = new JButton("Roll Dice");
 		add(rollDiceButton);
-		rollDiceButton.setBounds(100, 500, 200, 80);
+		rollDiceButton.setBounds(125, 500, 200, 80);
 
 		JButton passPigsButton = new JButton("Pass Pigs");
 		add(passPigsButton);
-		passPigsButton.setBounds(500, 500, 200, 80);
+		passPigsButton.setBounds(375, 500, 200, 80);
 
 		
 		JLabel mainFrameLabel = new JLabel();
@@ -56,44 +56,54 @@ public class GameOfPig extends JFrame {
 		mainFrameLabel.add(titleLabel);
 		titleLabel.setText("Pass the Pigs");
 		titleLabel.setBackground(Color.red);
-		titleLabel.setOpaque(true);
+	//	titleLabel.setOpaque(true);
 		titleLabel.setForeground(Color.pink);
-		titleLabel.setBounds(215, 90, 275, 60);
-		titleLabel.setFont(new Font("Serif", Font.BOLD, 50));
+		titleLabel.setBounds(183, 90, 350, 70);
+		titleLabel.setFont(new Font("Serif", Font.BOLD, 60));
 		
 		JLabel diceTitleLabel = new JLabel();
 		mainFrameLabel.add(diceTitleLabel);
 		diceTitleLabel.setFont(new Font("Serif", Font.PLAIN, 35));
-		diceTitleLabel.setBounds(275, 300, 175, 50);
+		diceTitleLabel.setBounds(260, 345, 175, 50);
 		diceTitleLabel.setText("Dice Value");
 		diceTitleLabel.setHorizontalAlignment(JLabel.CENTER);
 		diceTitleLabel.setBackground(Color.red);
-		diceTitleLabel.setOpaque(true);
+		diceTitleLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+
+		//diceTitleLabel.setOpaque(true);
 		
 		JLabel diceValueLabel = new JLabel();
 		mainFrameLabel.add(diceValueLabel);
 		diceValueLabel.setFont(new Font("Serif", Font.PLAIN, 70));
 		diceValueLabel.setHorizontalAlignment(JLabel.CENTER);
 		diceValueLabel.setVerticalAlignment(JLabel.CENTER);
-		diceValueLabel.setBounds(325, 350, 60, 70);
+		diceValueLabel.setBounds(322, 400, 60, 70);
 		diceValueLabel.setText("0");
 		diceValueLabel.setBackground(Color.blue);
-		diceValueLabel.setOpaque(true);
+		//diceValueLabel.setOpaque(true);
 
 		JLabel currentTurnScoreLabel = new JLabel();
 		mainFrameLabel.add(currentTurnScoreLabel);
 		currentTurnScoreLabel.setFont(new Font("Serif", Font.PLAIN, 70));
-		currentTurnScoreLabel.setBounds(335, 450, 60, 70);
+		currentTurnScoreLabel.setBounds(310, 250, 80, 70);
 		currentTurnScoreLabel.setText("0");
-		currentTurnScoreLabel.setBackground(Color.red);
+		currentTurnScoreLabel.setHorizontalAlignment(JLabel.CENTER);
+		currentTurnScoreLabel.setVerticalAlignment(JLabel.CENTER);
+		//currentTurnScoreLabel.setBackground(Color.green);
 		currentTurnScoreLabel.setOpaque(true);
 
 		JLabel turnScoreTitleLabel = new JLabel();
 		mainFrameLabel.add(turnScoreTitleLabel);
 		turnScoreTitleLabel.setFont(new Font("Serif", Font.PLAIN, 40));
-		turnScoreTitleLabel.setBounds(270, -150, 200, 700);
+		turnScoreTitleLabel.setBounds(250, 200, 200, 50);
+		turnScoreTitleLabel.setHorizontalAlignment(JLabel.CENTER);
+		turnScoreTitleLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		turnScoreTitleLabel.setText("Turn Score");
+		turnScoreTitleLabel.setHorizontalAlignment(mainFrameLabel.CENTER);
 
+		
+		
+		
 		JLabel player1ScoreTitleLabel = new JLabel();
 		mainFrameLabel.add(player1ScoreTitleLabel);
 		player1ScoreTitleLabel.setFont(new Font("Serif", Font.PLAIN, 35));
@@ -108,7 +118,7 @@ public class GameOfPig extends JFrame {
 		mainFrameLabel.add(player1ScoreLabel);
 		player1ScoreLabel.setFont(new Font("Serif", Font.PLAIN, 100));
 	    player1ScoreLabel.setHorizontalAlignment(JLabel.CENTER);
-		player1ScoreLabel.setBounds(75, 79, 100, 100);
+		player1ScoreLabel.setBounds(75, 79, 110, 100);
 		player1ScoreLabel.setText("0");
 		player1ScoreLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -234,7 +244,7 @@ public class GameOfPig extends JFrame {
 			}
 		});// END PASS BUTTON
 
-		super.setSize(700, 800);
+		super.setSize(700, 650);
 
 		setVisible(true);
 
