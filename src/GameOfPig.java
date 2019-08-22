@@ -247,6 +247,20 @@ public class GameOfPig extends JFrame {
 			}
 		});// END PASS BUTTON
 
+		//New Game Button
+		newGameButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				player2ScoreLabel.setText("0");
+				player1ScoreLabel.setText("0");
+				currentTurnScoreLabel.setText("0");
+				player1Turn = true;
+				player2Turn = false;
+				JOptionPane.showMessageDialog(mainFrameLabel, "    New Game Started");
+			}
+		});
+		
+		
 		super.setSize(620, 650);
 
 		setVisible(true);
